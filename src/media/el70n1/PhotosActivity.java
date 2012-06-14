@@ -23,33 +23,17 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
  
 
-public class PhotosActivity extends Activity {  
-	
-	
-	private String[] imageUrls;
-
-	
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
-
-	private DisplayImageOptions options;
+public class PhotosActivity extends BaseActivity {  
 	
 	public void onCreate(Bundle savedInstanceState) {
 
-		Log.v("ccccc", "2iniciando....");
+		//Log.v("ccccc", "2iniciando....");
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.photos_layout);
 
 		//imageLoader = ImageLoader.getInstance();
 		 
-		options = new DisplayImageOptions.Builder()
-			.showStubImage(R.drawable.stub_image)
-			.showImageForEmptyUrl(R.drawable.image_for_empty_url)
-			.cacheInMemory()
-			.cacheOnDisc()
-			.build();
-		
-		importLast();
 		
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         
@@ -71,37 +55,6 @@ public class PhotosActivity extends Activity {
 	protected void onStop() {
 		imageLoader.stop();
 		super.onStop();
-	}
-	
-	public void importLast() {
-
-        // Creating JSON Parser instance
-        JSONParser jParser = new JSONParser();
- 
-        // getting JSON string from URL
-        JSONObject json = jParser.getJSONFromUrl("http://www.tiramillas.es/justforshare/last.php");
-
-        JSONArray items = null;
-        List<String> listImageUrls= new ArrayList<String>();
-        
-        try {
-            // Getting Array of Contacts
-        	items = json.getJSONArray("items");
- 
-            // looping through All Contacts
-            for(int i = 0; i < items.length(); i++){
-                JSONObject c = items.getJSONObject(i);
- 
-                // Storing each json item in variable
-                listImageUrls.add(c.getString("url"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        
-        imageUrls = new String[ listImageUrls.size() ];
-        listImageUrls.toArray( imageUrls );
-
 	}
 	
 	

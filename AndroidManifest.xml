@@ -27,7 +27,10 @@
         <activity android:name=".VideosActivity" />
  
         <!--  Photos Activity -->
-        <activity android:name=".PhotosActivity" />
+        <activity android:name=".PhotosActivity" /> 
+        
+        <!--  ImagePagerActivity Activity -->
+        <activity android:name=".ImagePagerActivity" />
  
     </application>
 
